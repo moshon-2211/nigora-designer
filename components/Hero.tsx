@@ -1,53 +1,41 @@
+"use client";
+
+import { useLang } from "@/components/LangContext";
+
 export default function Hero() {
+  const { t } = useLang();
   return (
-    <section className="hero wrap">
-      <div className="hero-top reveal">
-        <span className="meta">
-          Студия дизайна · <b>Vol. 01</b>
-        </span>
-        <span className="meta">Душанбе · Tajikistan</span>
-        <span className="meta">
-          Est. <b>ArchiCAD</b>
-        </span>
+    <section className="hero-ref">
+      {/* Размытый фон на весь экран */}
+      <div className="href-bg" aria-hidden="true">
+        <img src="/images/hero-bg.jpg" alt="" />
+        <div className="href-overlay" />
       </div>
 
-      <div className="hero-grid">
-        <div className="hero-copy">
-          <div className="eyebrow reveal" style={{ marginBottom: "1.6rem" }}>
-            Дизайнер интерьера · ArchiCAD
-          </div>
-          <h1 className="reveal serif" data-delay="1">
-            Создаю интерьеры
-            <br />
-            <span className="grad-text">тихой роскоши</span>
-          </h1>
-          <p className="hero-sub reveal" data-delay="2">
-            Гармония, функциональность и характер в каждом проекте — от концепции
-            и атмосферы до точных рабочих чертежей в ArchiCAD. Премиальные жилые и
-            коммерческие пространства, в которых хочется жить.
+      {/* Большой заголовок по центру сверху */}
+      <div className="href-masthead">
+        <h1 className="href-name">{t.hero.name}</h1>
+        <p className="href-tagline">{t.hero.tagline}</p>
+      </div>
+
+      {/* Плавающая карточка */}
+      <div className="href-card reveal">
+        <div className="href-card-left">
+          <span className="href-eyebrow">{t.hero.eyebrow}</span>
+          <p className="href-text">
+            <em>{t.hero.em1}</em>
+            {t.hero.mid}
+            <em>{t.hero.em2}</em>.
           </p>
-          <div className="hero-actions reveal" data-delay="3">
-            <a href="#works" className="btn">
-              <span>Смотреть работы</span> <span className="arr">↗</span>
-            </a>
-            <a href="#contact" className="btn-ghost">
-              Обсудить проект
-            </a>
-          </div>
-          <div className="scroll-cue reveal" data-delay="4">
-            <span className="bar" />
-            прокрутите вниз
-          </div>
+          <a href="#works" className="href-btn">{t.hero.btn}</a>
         </div>
 
-        <figure className="hero-figure reveal" data-delay="2">
-          <span className="glow" aria-hidden />
-          
-          <div className="hero-portrait bottom-20 ">
-            <img src="/images/img00.jpg" alt="Нигора Солиева — дизайнер интерьера" />
-          </div>
-         
-        </figure>
+        <div className="href-card-right">
+          <img
+            src="/images/DSC06866.jpg"
+            alt="Нигора Солиева — дизайнер интерьера"
+          />
+        </div>
       </div>
     </section>
   );

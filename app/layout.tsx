@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 
-const display = Playfair_Display({
+const display = Cormorant_Garamond({
   subsets: ["latin", "cyrillic"],
   style: ["normal", "italic"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-display",
   display: "swap",
 });
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#121212",
+  themeColor: "#f7f4ef",
   width: "device-width",
   initialScale: 1,
 };
@@ -52,7 +52,6 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${display.variable} ${sans.variable}`}>
       <body>
-        {/* прогрессивное улучшение: помечаем, что JS активен (как в исходнике) */}
         <script
           dangerouslySetInnerHTML={{
             __html: "document.documentElement.classList.add('js')",

@@ -2,21 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { GALLERY } from "@/lib/data";
-
-const RESIDENTIAL = [
-  { n: "01", t: "Ходжи", s: "Квартира 2→3 комнаты · скандинавские ноты" },
-  { n: "02", t: "Бустонсити", s: "Квартира 1→2 комнаты · пара среднего возраста" },
-  { n: "03", t: "Элитсрой", s: "Квартира для семьи с тремя детьми" },
-  { n: "04", t: "Юск", s: "Для молодой пары и родителя" },
-  { n: "05", t: "Семейная", s: "Для молодой семьи с двумя детьми" },
-];
-const COMMERCIAL = [
-  { n: "06", t: "Мини-кафе", s: "Уютное пространство на каждый день" },
-  { n: "07", t: "Аптека", s: "Немецкая, в европейском стиле" },
-  { n: "08", t: "Молодёжный центр", s: "Современное общественное пространство" },
-];
+import { useLang } from "@/components/LangContext";
 
 export default function Gallery() {
+  const { lang, t } = useLang();
   const [open, setOpen] = useState<number | null>(null);
 
   const show = useCallback(
@@ -49,18 +38,11 @@ export default function Gallery() {
     <section className="section" id="portfolio">
       <div className="wrap">
         <div className="section-head reveal">
-          <span className="idx">(04)</span>
-          <h2 className="serif">Портфолио</h2>
-        </div>
-        <div className="pf-intro reveal">
-          <span className="eyebrow">Полная коллекция</span>
-          <p>
-            Реализованные и концептуальные интерьеры жилых и коммерческих
-            пространств. Нажмите на изображение, чтобы открыть в полном размере.
-          </p>
+          <span className="idx">{t.portfolio.idx}</span>
+          <h2 className="serif">{t.portfolio.heading}</h2>
         </div>
 
-        <div className="gallery  " id="gallery">
+        <div className="gallery" id="gallery">
           {GALLERY.map((g, i) => (
             <figure
               key={g.img + i}
@@ -70,14 +52,14 @@ export default function Gallery() {
             >
               <img
                 src={g.img}
-                alt={`${g.room} — проект «${g.project}»`}
+                alt={`${g.room[lang]} — ${g.project}`}
                 loading="lazy"
               />
               <span className="plus ">+</span>
               <figcaption className="cap flex gap-x-4 whitespace-nowrap">
-  <span className="r serif">{g.room}</span>
-  <span className="p serif">{g.project}</span>
-</figcaption>
+                <span className="r serif">{g.room[lang]}</span>
+                <span className="p serif">{g.project}</span>
+              </figcaption>
             </figure>
           ))}
         </div>
@@ -85,10 +67,10 @@ export default function Gallery() {
         <div className="projects-roster reveal">
           <div className="roster-head">
             <span className="idx">·</span>
-            <h3 className="serif">Жилые пространства</h3>
+            <h3 className="serif">{t.portfolio.residentialTitle}</h3>
           </div>
           <div className="roster ">
-            {RESIDENTIAL.map((r) => (
+            {t.portfolio.residential.map((r) => (
               <div className="ritem " key={r.n}>
                 <span className="rn serif ">{r.n}</span>
                 <span className="rt ">
@@ -100,10 +82,10 @@ export default function Gallery() {
           </div>
           <div className="roster-head" style={{ marginTop: "2.8rem" }}>
             <span className="idx">·</span>
-            <h3 className="serif">Коммерческие пространства</h3>
+            <h3 className="serif">{t.portfolio.commercialTitle}</h3>
           </div>
           <div className="roster">
-            {COMMERCIAL.map((r) => (
+            {t.portfolio.commercial.map((r) => (
               <div className="ritem" key={r.n}>
                 <span className="rn serif">{r.n}</span>
                 <span className="rt">
@@ -137,7 +119,7 @@ export default function Gallery() {
         >
           ‹
         </button>
-        {cur && <img src={cur.img} alt={`${cur.room} — проект «${cur.project}»`} />}
+        {cur && <img src={cur.img} alt={`${cur.room[lang]} — ${cur.project}`} />}
         <button
           className="lb-nav next"
           aria-label="Вперёд"
@@ -149,7 +131,7 @@ export default function Gallery() {
           ›
         </button>
         <div className="lb-cap">
-          {cur ? `${cur.room}  ·  ${cur.project}` : ""}
+          {cur ? `${cur.room[lang]}  ·  ${cur.project}` : ""}
         </div>
       </div>
     </section>

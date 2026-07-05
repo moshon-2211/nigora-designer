@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { WORKS } from "@/lib/data";
+import { useLang } from "@/components/LangContext";
 
 const pad = (n: number) => (n < 10 ? "0" : "") + n;
 const LEN = WORKS.length;
 
 export default function WorksSlider() {
+  const { lang, t } = useLang();
   const [index, setIndex] = useState(0);
   const [shown, setShown] = useState(0); // индекс для текстовой панели (плавная смена)
   const [swap, setSwap] = useState(false);
@@ -86,8 +88,8 @@ export default function WorksSlider() {
     <section className="section works" id="works">
       <div className="wrap">
         <div className="section-head reveal">
-          <span className="idx">(03)</span>
-          <span className="eyebrow">Избранные проекты</span>
+          <span className="idx">{t.works.idx}</span>
+          <span className="eyebrow">{t.works.eyebrow}</span>
         </div>
 
         <div
@@ -111,7 +113,7 @@ export default function WorksSlider() {
                 >
                   <img
                     src={item.img}
-                    alt={`${item.room} — проект «${item.project}»`}
+                    alt={`${item.room[lang]} — ${item.project}`}
                     loading={i === 0 ? "eager" : "lazy"}
                   />
                 </div>
@@ -123,22 +125,22 @@ export default function WorksSlider() {
 
             <div className="slider-info">
               <div className={`slide-panel${swap ? " swap" : ""}`}>
-                <div className="si-eyebrow">Проект «{w.project}»</div>
-                <h3 className="si-title serif">{w.room}</h3>
-                <div className="si-room">{w.style}</div>
-                <p className="si-desc">{w.desc}</p>
+                <div className="si-eyebrow">{t.works.projectPrefix(w.project)}</div>
+                <h3 className="si-title serif">{w.room[lang]}</h3>
+                <div className="si-room">{w.style[lang]}</div>
+                <p className="si-desc">{w.desc[lang]}</p>
                 <div className="si-facts">
                   <div className="si-fact">
-                    <div className="k">Объект</div>
+                    <div className="k">{t.works.factObject}</div>
                     <div className="v serif">{w.project}</div>
                   </div>
                   <div className="si-fact">
-                    <div className="k">Зона</div>
-                    <div className="v serif">{w.room}</div>
+                    <div className="k">{t.works.factZone}</div>
+                    <div className="v serif">{w.room[lang]}</div>
                   </div>
                   <div className="si-fact">
-                    <div className="k">Формат</div>
-                    <div className="v serif">{w.area}</div>
+                    <div className="k">{t.works.factFormat}</div>
+                    <div className="v serif">{w.area[lang]}</div>
                   </div>
                 </div>
               </div>
@@ -181,7 +183,7 @@ export default function WorksSlider() {
 
           <div className="works-more">
             <a href="#portfolio" className="link-quiet">
-              Вся коллекция работ ↓
+              {t.works.more}
             </a>
           </div>
         </div>

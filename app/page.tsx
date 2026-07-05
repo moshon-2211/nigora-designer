@@ -12,10 +12,11 @@ import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 import ScrollProgress from "@/components/ScrollProgress";
 import RevealManager from "@/components/RevealManager";
+import { LangProvider } from "@/components/LangContext";
 
 export default function Home() {
   return (
-    <>
+    <LangProvider>
       <div className="atmos" aria-hidden />
       <div className="vignette" aria-hidden />
 
@@ -37,6 +38,6 @@ export default function Home() {
 
       <ScrollProgress />
       <RevealManager />
-    </>
+    </LangProvider>
   );
 }
