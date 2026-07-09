@@ -313,7 +313,7 @@ export const dict: Record<Lang, Dict> = {
         { k: "Telegram", v: "@nigora.design", href: "https://t.me/nigora_design", ext: true },
         { k: "Instagram", v: "@nigora.interior", href: "https://instagram.com/nigora.interior", ext: true },
         { k: "Email", v: "hello@nigora.design", href: "mailto:hello@nigora.design", ext: false },
-        { k: "Phone", v: "+992 00 000 00 00", href: "tel:+992000000000", ext: false },
+        { k: "Phone", v: "+992 00 000 00 00", href: "tel:+992432423524534", ext: false },
       ],
       footTagline: "Interior design studio · residential and commercial spaces",
       rights: "All rights reserved",
